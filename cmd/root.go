@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -11,11 +10,9 @@ var rootCmd = &cobra.Command{
 	Short: "Task is a cli task manager",
 }
 
-func Execute() {
+func Execute()error {
 	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
+return err	
 }
 
 func init() {

@@ -1,9 +1,8 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
+
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -14,9 +13,13 @@ import (
 func main() {
 	home,_:= os.UserHomeDir()
 	dbPath:=filepath.Join(home,"tasks.db")
-	err:=db.Init(dbPath)
-	if err!=nil{
-		panic(err)
+	must(db.Init(dbPath))
+	must(cmd.Execute())
+}
+func must(err error){
+	if(err!=nil){
+		fmt.Println(err.Error())
+		os.Exit(1)
+
 	}
-	cmd.Execute()
 }
